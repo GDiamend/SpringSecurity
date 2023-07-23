@@ -13,6 +13,12 @@ public class SecurityConfiguration {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
+				.authorizeHttpRequests()
+					.requestMatchers("v1/index2").permitAll()
+					.anyRequest().authenticated()
+				.and()
+					.formLogin().permitAll()
+				.and()
 				.build();
 	}
 
